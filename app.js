@@ -1,23 +1,42 @@
 const express = require("express");
 const app = express();
+const apiRouter = require('./Routes/api-router');
 
-const { getAllOwners, getOwnerById } = require("./controllers/owners.js");
-const { getPetsByOwnerId, getPetById } = require("./controllers/pets.js");
-
-app.get("/api/owners", function (request, response) {
-  getAllOwners(request, response);
-});
-
-app.get(`/api/owners/:ownerId`, function (request, response) {
-  getOwnerById(request, response);
-});
-
-app.get("/api/owners/:ownerId/pets", function (request, response) {
-  getPetsByOwnerId(request, response);
-});
-
-app.get("/api/pets/:id", function (request, response) {
-  getPetById(request, response);
-});
+app.use('/api', apiRouter)
 
 module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// OLD 
+
+// const { getAllOwners, getOwnerById } = require("./controllers/owners.js");
+// const { getPetsByOwnerId, getPetById } = require("./controllers/pets.js");
+
+// app.get("/api/owners", getAllOwners);
+
+// app.get(`/api/owners/:ownerId`, getOwnerById);
+
+// app.get("/api/owners/:ownerId/pets", getPetsByOwnerId);
+
+// app.get("/api/pets/:id", getPetById);

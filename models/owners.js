@@ -32,7 +32,12 @@ const fetchOwnerById = (id, cb) => {
   });
 };
 
-const updateOwner = (id, data, cb) => {};
+
+const updateOwner = (id, data, cb) => {
+  fs.readFile(`./data/owners/${id}.json`, function (error, owner) {
+    console.log(owner)
+  })
+};
 
 const deleteOwnerById = (id, cb) => {};
 

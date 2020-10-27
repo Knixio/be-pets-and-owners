@@ -6,6 +6,13 @@ const {
   deleteOwnerById,
 } = require("../models/owners.js");
 
+function patchUpdateOwner(request, response) {
+  updateOwner()
+response.status(200);
+
+//send to show the update????
+}
+
 function getAllOwners(request, response) {
   fetchAllOwners(function (error, owners) {
     response.status(200).send({ owners });
