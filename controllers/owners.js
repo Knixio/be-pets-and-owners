@@ -6,6 +6,13 @@ const {
   deleteOwnerById,
 } = require("../models/owners.js");
 
+function postCreateOwner(request, response) {
+  const data = request.body;
+  createOwner(data, function(err, owner) {
+    response.status(200).send({owner})
+  })
+}
+
 function patchUpdateOwner(request, response) {
   const id = request.params.ownerId;
   const data = request.body;
@@ -28,4 +35,4 @@ function getOwnerById(request, response) {
   });
 }
 
-module.exports = { getAllOwners, getOwnerById, patchUpdateOwner };
+module.exports = { getAllOwners, getOwnerById, patchUpdateOwner, postCreateOwner };

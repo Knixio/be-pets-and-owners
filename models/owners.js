@@ -1,6 +1,19 @@
 const fs = require("fs");
 
-const createOwner = (data, cb) => {};
+const createOwner = (data, cb) => {
+  fs.readdir('./data/owners', (error, owners) => {
+    const newFileNo = owners.length + 1;
+    data.id = `o${newFileNo}`;
+    data.created = Date.now();
+    fs.writeFile(`./data/owners/o${newFileNo}.json`, JSON.stringify(data, null, 2), function(error) {
+      if(error) cb(error);
+      else {
+        cb(null, data)
+      }
+    })
+  })
+
+};
 
 const fetchAllOwners = (cb) => {
   let responseCount = 0;
