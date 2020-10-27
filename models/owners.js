@@ -19,24 +19,41 @@ const fetchAllOwners = (cb) => {
 };
 
 const fetchOwnerById = (id, cb) => {
-  let ownerArr = [];
   fs.readFile(`./data/owners/${id}.json`, "utf8", function (
     error,
     ownerString
   ) {
-    ownerArr.push(JSON.parse(ownerString));
+    const owner = JSON.parse(ownerString);
     if (error) cb(error);
     else {
-      cb(null, ownerArr);
+      cb(null, owner);
     }
   });
 };
 
-
 const updateOwner = (id, data, cb) => {
-  fs.readFile(`./data/owners/${id}.json`, function (error, owner) {
-    console.log(owner)
-  })
+  fs.readFile(`./data/owners/${id}.json`, "utf8", function (error, owner) {
+    let parsedOwner = JSON.parse(owner);
+    console.log(parsedOwner);
+    if (data.name) {
+      parsedOwner.name = data.name;
+    }
+    if (data.age) {
+      parsedOwner.age = data.age;
+    }
+    console.log(parsedOwner);
+
+    fs.writeFile(
+      `./data/owners/${id}.json`,
+      JSON.stringify(parsedOwner),
+      function (error) {
+        if (error) cb(error);
+        else {
+          cb(null, parsedOwner);
+        }
+      }
+    );
+  });
 };
 
 const deleteOwnerById = (id, cb) => {};

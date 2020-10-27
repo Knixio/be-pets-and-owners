@@ -1,34 +1,13 @@
 const express = require("express");
 const app = express();
-const apiRouter = require('./Routes/api-router');
+const apiRouter = require("./Routes/api-router");
 
-app.use('/api', apiRouter)
+app.use(express.json());
+app.use("/api", apiRouter);
 
 module.exports = app;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// OLD 
+// OLD
 
 // const { getAllOwners, getOwnerById } = require("./controllers/owners.js");
 // const { getPetsByOwnerId, getPetById } = require("./controllers/pets.js");

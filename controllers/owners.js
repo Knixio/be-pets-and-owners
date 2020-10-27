@@ -7,10 +7,12 @@ const {
 } = require("../models/owners.js");
 
 function patchUpdateOwner(request, response) {
-  updateOwner()
-response.status(200);
-
-//send to show the update????
+  const id = request.params.ownerId;
+  const data = request.body;
+  console.log(data, "<---- data");
+  updateOwner(id, data, function (error, owner) {
+    response.status(200).send({ owner });
+  });
 }
 
 function getAllOwners(request, response) {
@@ -26,4 +28,4 @@ function getOwnerById(request, response) {
   });
 }
 
-module.exports = { getAllOwners, getOwnerById };
+module.exports = { getAllOwners, getOwnerById, patchUpdateOwner };
